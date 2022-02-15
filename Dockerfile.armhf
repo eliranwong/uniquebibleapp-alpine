@@ -1,0 +1,116 @@
+FROM lsiobase/rdesktop-web:arm32v7-alpine
+
+# set version label
+ARG BUILD_DATE
+ARG VERSION
+ARG FIREFOX_VERSION
+LABEL build_version="UniqueBible.app version:- ${VERSION} Build-date:- ${BUILD_DATE}"
+LABEL maintainer="Eliran Wong"
+
+RUN \
+  echo "**** apk update ****" && \
+  apk update
+  # apk update && sudo apk add --upgrade apk-tools && sudo apk upgrade --available
+RUN \
+  echo "**** install basic packages ****" && \
+    sudo apk add --update --no-cache  && \
+    linux-headers && \
+    git && \
+    wget && \
+    nano && \
+    bash && \
+    build-base && \
+    libffi-dev && \
+    openssl-dev && \
+    bzip2-dev && \
+    zlib-dev && \
+    readline-dev && \
+    sqlite-dev
+RUN \
+  echo "**** setup qt5 ****" && \
+    sudo apk add --update --no-cache && \
+    qt5-qtbase && \
+    qt5-qtbase-dev
+RUN \
+  echo "**** add environment variables ****" && \
+  sudo sh -c 'echo "export PATH=/usr/lib/qt5/bin:$PATH" >> /etc/profile' && \
+  sudo sh -c 'echo "export PYTHONUNBUFFERED=1" >> /etc/profile' && \
+  sudo sh -c 'echo "export ENABLE_CJK_FONT=1" >> /etc/profile'
+ENV PATH=/usr/lib/qt5/bin:$PATH
+ENV PYTHONUNBUFFERED=1
+RUN \
+  echo "**** setup python ****" && \
+    apk add --update --no-cache && \
+    python3 && \
+    python3-dev && \
+    py3-pip && \
+    py3-setuptools && \
+    py3-sip && \
+    py3-sip-dev && \
+    py3-sip-pyqt5 && \
+    py3-qt5 && \
+    py3-qtwebengine && \
+    # ln -sf python3 /usr/bin/python
+    # python3 -m ensurepip && \
+    pip3 install --no-cache --upgrade pip
+    # pip3 install --no-cache --upgrade sip
+    # pip3 install --no-cache --upgrade setuptools
+    # References:
+    # https://www.riverbankcomputing.com/software/sip/download
+    # http://www.niladicpodcast.com/blog/2017/8/install-pyqt5-inside-a-virtual-environment/
+    # https://github.com/kusharami/docker-qt5-alpine-dev/
+RUN \
+  echo "**** setup text-to-speech ****" && \
+  pip3 install --no-cache gTTS && \
+  apk add --update --no-cache && \
+  sox && \
+  mpg123
+RUN \
+  echo "**** install firefox ****" && \
+  apk add --no-cache --virtual=build-dependencies \
+    curl && \
+  if [ -z ${FIREFOX_VERSION+x} ]; then \
+    FIREFOX_VERSION=$(curl -sL "http://dl-cdn.alpinelinux.org/alpine/v3.15/community/x86_64/APKINDEX.tar.gz" | tar -xz -C /tmp \
+    && awk '/^P:firefox$/,/V:/' /tmp/APKINDEX | sed -n 2p | sed 's/^V://'); \
+  fi && \
+  apk add --no-cache \
+    firefox==${FIREFOX_VERSION}
+RUN \
+  echo "**** install other gui apps ****" && \
+  apk add --update --no-cache && \
+  rxvt-unicode && \
+  gnome-terminal && \
+  geany && \
+  vlc
+RUN \
+  echo "**** install fonts ****" && \
+  # ms fonts
+  sudo apk add --no-cache msttcorefonts-installer fontconfig && \
+  sudo update-ms-fonts && \
+  # Chinese font
+  apk add --no-cache wqy-zenhei --repository http://dl-cdn.alpinelinux.org/alpine/edge/testing
+# google fonts
+RUN wget https://github.com/google/fonts/archive/master.tar.gz -O gf.tar.gz
+RUN tar -xf gf.tar.gz
+RUN mkdir -p /usr/share/fonts/truetype/google-fonts
+RUN find $PWD/fonts-master/ -name "*.ttf" -exec install -m644 {} /usr/share/fonts/truetype/google-fonts/ \; || return 1
+RUN rm -f gf.tar.gz
+RUN fc-cache -f && rm -rf /var/cache/*
+# References:
+# general - https://wiki.alpinelinux.org/wiki/Fonts
+# google fonts - https://stackoverflow.com/questions/56937689/how-to-install-fonts-in-docker
+# locale - https://grrr.tech/posts/2020/add-locales-to-alpine-linux-docker-image/
+# fcitx - https://www.zhihu.com/question/358028191/answer/1157948335
+RUN \
+  echo "**** cleanup ****" && \
+  apk del --purge \
+    build-dependencies && \
+  rm -rf \
+    /tmp/*
+
+# add local files
+COPY /root /
+
+# ports and volumes
+EXPOSE 3000
+VOLUME /config

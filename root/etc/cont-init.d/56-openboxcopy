@@ -1,0 +1,18 @@
+#!/usr/bin/with-contenv bash
+
+# default file copies first run
+[[ ! -f /config/.config/openbox/menu.xml ]] && \
+    mkdir -p /config/.config/openbox && \
+    cp /defaults/menu.xml /config/.config/openbox/menu.xml && \
+    chown -R abc:abc /config/.config
+[[ ! -d "/config/UniqueBible" ]] && \
+    export PATH="${PATH}:/config/.local/bin" && \
+    echo 'export PATH="${PATH}:/usr/lib/qt5/bin:/config/.local/bin"' >> /config/.bashrc && \
+    echo 'export PYTHONUNBUFFERED=1' >> /config/.bashrc && \
+    echo 'export ENABLE_CJK_FONT=1' >> /config/.bashrc && \
+    echo 'alias uba=/config/UniqueBible/uba.py' >> /config/.bashrc && \
+    git clone https://github.com/eliranwong/UniqueBible /config/UniqueBible && \
+    chown -R abc:abc /config/UniqueBible && \
+    echo $'#\!/usr/bin/python3\n/config/UniqueBible/uba.py docker' >> /config/UniqueBible/UniqueBibleApp.sh && \
+    chmod +x /config/UniqueBible/UniqueBibleApp.sh && \
+    chown abc:abc /config/UniqueBible/UniqueBibleApp.sh

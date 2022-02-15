@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<openbox_menu xmlns="http://openbox.org/3.4/menu">
+<menu id="root-menu" label="MENU">
+<item label="Unique Bible App" icon="/config/UniqueBible/htmlResources/UniqueBibleApp.png"><action name="Execute"><command>/config/UniqueBible/UniqueBibleApp.sh</command></action></item>
+<item label="Thunar" icon="/usr/share/icons/hicolor/48x48/apps/org.xfce.thunar.png"><action name="Execute"><command>/usr/bin/thunar</command></action></item>
+<item label="Ristretto" icon="/usr/share/icons/hicolor/48x48/apps/org.xfce.ristretto.png"><action name="Execute"><command>/usr/bin/ristretto</command></action></item>
+<item label="FireFox" icon="/usr/share/icons/hicolor/48x48/apps/firefox.png"><action name="Execute"><command>/usr/bin/firefox</command></action></item>
+<item label="Geany" icon="/usr/share/icons/hicolor/48x48/apps/geany.png"><action name="Execute"><command>/usr/bin/geany</command></action></item>
+<item label="VLC" icon="/usr/share/vlc/vlc.ico"><action name="Execute"><command>/usr/bin/vlc</command></action></item>
+<item label="Terminal" icon="/usr/share/pixmaps/xterm-color_48x48.xpm"><action name="Execute"><command>/usr/bin/gnome-terminal</command></action></item>
+<item label="Reload OB"><action name="Reconfigure"/></item>
+</menu>
+</openbox_menu>
