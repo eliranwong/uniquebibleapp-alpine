@@ -1,7 +1,7 @@
 # UniqueBibleApp-alpine
 Unique Bible App desktop version runs with Alpine webtop
 
-With this package, you can run Unique Bible App easily in Windows / macOS / ChromeOS / Linux, with a web browser.
+With this package, you can now run Unique Bible App full desktop version in Windows / macOS / ChromeOS / Linux easily with a web browser.
 
 # About Unique Bible App
 https://github.com/eliranwong/UniqueBible
