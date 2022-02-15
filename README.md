@@ -19,7 +19,7 @@ You may check our notes about docker setup at: https://github.com/eliranwong/Arc
 
 With <a href="https://www.docker.com">docker</a> installed FIRST, run:
 
-> sudo docker run -d --name=uniquebibleapp --security-opt seccomp=unconfined -e GUIAUTOSTART=true -e PUID=1000 -e PGID=1000 -e TZ=Europe/London -e SUBFOLDER=/ -e KEYBOARD=en-gb-qwerty -p 3000:3000 -v ~/uniquebibleapp-alpine:/config -v /var/run/docker.sock:/var/run/docker.sock --shm-size="1gb" --restart unless-stopped eliranwong/uniquebibleapp-alpine
+> sudo docker run -d --name=uniquebibleapp --security-opt seccomp=unconfined -e GUIAUTOSTART=true -e PUID=1000 -e PGID=1000 -e TZ=Europe/London -e SUBFOLDER=/ -e KEYBOARD=en-gb-qwerty -p 3000:3000 -v ~/uniquebibleapp-alpine:/config -v /var/run/docker.sock:/var/run/docker.sock --shm-size="1gb" --restart unless-stopped eliranwong/uniquebibleapp
 
 Notes:
 
