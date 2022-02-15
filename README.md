@@ -51,7 +51,7 @@ You can simply launch Unique Bible App from a terminal app by running:
 
 # Restart Unique Bible App
 
-By default, Unique Bible App is automatically launched when you first log into the web interface via localhost:3000.  In case you close it and want to restart it, right click and select "Unique Bible App".
+By default, Unique Bible App is automatically launched when you first log into the web interface.  In case you close it and want to restart it, right click and select "Unique Bible App".
 
 # Reload docker container
 
