@@ -1,5 +1,7 @@
 # UniqueBibleApp-alpine
-Unique Bible App docker image built with Alpine Linux webtop
+Unique Bible App desktop version runs with Alpine webtop
+
+With this package, you can run Unique Bible App easily in Windows / macOS / ChromeOS / Linux, with a web browser.
 
 # About Unique Bible App
 https://github.com/eliranwong/UniqueBible
