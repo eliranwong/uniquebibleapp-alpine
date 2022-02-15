@@ -13,6 +13,10 @@ With <a href="https://www.docker.com">docker</a> installed FIRST, run:
 
 > sudo docker run -d --name=uniquebibleapp --security-opt seccomp=unconfined -e GUIAUTOSTART=true -e PUID=1000 -e PGID=1000 -e TZ=Europe/London -e SUBFOLDER=/ -e KEYBOARD=en-gb-qwerty -p 3000:3000 -v ~/uniquebibleapp-alpine:/config -v /var/run/docker.sock:/var/run/docker.sock --shm-size="1gb" --restart unless-stopped uniquebibleapp-alpine
 
+To run Unique Bible App, open "localhost:3000" in a web browser.
+
+Running Unique Bible App the first time takes extra time before you can load "localhost:3000", as essential components are downloaded.
+
 Notes:
 
 1) Check host user id, by running the following command and change "-e PUID=1000 -e PGID=1000" if applicable
