@@ -7,6 +7,12 @@ https://github.com/eliranwong/UniqueBible
 # About Webtops
 https://www.linuxserver.io/blog/2021-05-05-meet-webtops-a-linux-desktop-environment-in-your-browser
 
+# Install Docker FIRST
+
+You can install docker on Windows, macOS, Linux, ChromeOS.
+
+You may check our notes about docker setup at: https://github.com/eliranwong/ArchLinuxWebtop#setup-docker
+
 # For end-users
 
 With <a href="https://www.docker.com">docker</a> installed FIRST, run:
