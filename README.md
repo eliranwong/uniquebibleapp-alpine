@@ -49,7 +49,7 @@ By default, Unique Bible App is automatically launched when you first log into t
 
 In case you want to reload the container, run in host terminal:
 
-> docker restart uniquebibleapp-alpine
+> docker restart uniquebibleapp
 
 # Additional GUI apps
 
@@ -63,11 +63,11 @@ You can launch these apps via command line tools or GUI menu with a right-click.
 
 To build a docker image from this repository:
 
-> git clone https://github.com/eliranwong/UniqueBibleApp-alpine.git
+> git clone https://github.com/eliranwong/uniquebibleapp-alpine.git
 
-> cd UniqueBibleApp-alpine
+> cd uniquebibleapp-alpine
 
-> docker build -t uniquebibleapp-alpine .
+> docker build -t uniquebibleapp .
 
 # For macOS users
 
