@@ -1,3 +1,9 @@
+# This project is now replaced by
+
+https://github.com/eliranwong/uniquebibleapp-webtop
+
+which uses Arch Linux webtop instead of Alpine webtop.
+
 # UniqueBibleApp-alpine
 Unique Bible App desktop version runs with Alpine webtop
 
